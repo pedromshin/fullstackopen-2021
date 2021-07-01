@@ -8,7 +8,7 @@ const Button = (props) => {
   );
 };
 
-const StatsFeed = (props) => {
+const Statistic = (props) => {
   return (
     <div>
       <p>
@@ -23,12 +23,12 @@ const Statistics = (props) => {
     return (
       <div>
         <h1>Statistics</h1>
-        <StatsFeed text="Good" value={props.GoodCounter} />
-        <StatsFeed text="Neutral" value={props.NeutralCounter} />
-        <StatsFeed text="Bad" value={props.BadCounter} />
-        <StatsFeed text="All" value={props.sumAll} />
-        <StatsFeed text="Average" value={props.average} />
-        <StatsFeed text="Positive" value={props.percentage} />
+        <Statistic text="Good" value={props.GoodCounter} />
+        <Statistic text="Neutral" value={props.NeutralCounter} />
+        <Statistic text="Bad" value={props.BadCounter} />
+        <Statistic text="All" value={props.sumAll} />
+        <Statistic text="Average" value={props.average} />
+        <Statistic text="Positive" value={props.percentage} />
       </div>
     );
   } else {
