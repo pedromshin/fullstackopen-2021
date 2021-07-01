@@ -8,16 +8,17 @@ const Button = (props) => {
   );
 };
 
+const StatsFeed = (props) => {
+  return (
+    <div>
+      <p>
+        {props.text} {props.value}
+      </p>
+    </div>
+  );
+};
+
 const Statistics = (props) => {
-  const StatsFeed = (props) => {
-    return (
-      <div>
-        <p>
-          {props.text} {props.value}
-        </p>
-      </div>
-    );
-  };
   if (props.total > 0) {
     return (
       <div>
@@ -82,5 +83,3 @@ const App = () => {
 };
 
 export default App;
-
-//Making this comment to make commit history in order.
