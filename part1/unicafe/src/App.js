@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 
 const Statistics = (props) => {
-  return (
-    <div>
-      <h1>Statistics</h1>
-      <p>
-        {props.GoodFeedback} {props.GoodCounter}
-      </p>
-      <p>
-        {props.NeutralFeedback} {props.NeutralCounter}
-      </p>
-      <p>
-        {props.BadFeedback} {props.BadCounter}
-      </p>
-      <p>
-        {props.textAll} {props.sumAll}
-      </p>
-      <p>Average {props.average}</p>
-      <p>Positive {props.percentage}%</p>
-    </div>
-  );
+  if (props.total > 0) {
+    return (
+      <div>
+        <h1>Statistics</h1>
+        <p>
+          {props.GoodFeedback} {props.GoodCounter}
+        </p>
+        <p>
+          {props.NeutralFeedback} {props.NeutralCounter}
+        </p>
+        <p>
+          {props.BadFeedback} {props.BadCounter}
+        </p>
+        <p>
+          {props.textAll} {props.sumAll}
+        </p>
+        <p>Average {props.average}</p>
+        <p>Positive {props.percentage}%</p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>No feedback given.</p>
+      </div>
+    );
+  }
 };
 
 const App = () => {
@@ -47,7 +55,6 @@ const App = () => {
     setScore(score - 1);
     console.log("clicked bad");
   };
-
   return (
     <div>
       <h1>Give Feedback</h1>
@@ -55,6 +62,7 @@ const App = () => {
       <button onClick={increaseNeutralByOne}>Neutral</button>
       <button onClick={increaseBadByOne}>Bad</button>
       <Statistics
+        total={total}
         GoodFeedback={"Good"}
         GoodCounter={good}
         NeutralFeedback={"Neutral"}
