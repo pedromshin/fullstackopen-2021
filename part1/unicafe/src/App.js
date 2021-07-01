@@ -5,11 +5,11 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  let total = good + neutral + bad;
-  let score = 0;
+  const [score, setScore] = useState(0);
 
   const increaseGoodByOne = () => {
     setGood(good + 1);
+    setScore(score + 1);
     console.log("clicked good");
   };
 
@@ -20,32 +20,15 @@ const App = () => {
 
   const increaseBadByOne = () => {
     setBad(bad + 1);
+    setScore(score - 1);
     console.log("clicked bad");
   };
 
   const StatsType = (props) => {
     return (
-      <div>
-        <p>
-          {props.typeOfFeedback} {props.counter}
-        </p>
-      </div>
-    );
-  };
-
-  const SumAll = () => {
-    return (
-      <div>
-        <p>All {total}</p>
-      </div>
-    );
-  };
-
-  const Average = () => {
-    return (
-      <div>
-        <p>Average {score}</p>
-      </div>
+      <p>
+        {props.typeOfFeedback} {props.counter}
+      </p>
     );
   };
 
@@ -59,8 +42,6 @@ const App = () => {
       <StatsType typeOfFeedback={"Good"} counter={good} />
       <StatsType typeOfFeedback={"Neutral"} counter={neutral} />
       <StatsType typeOfFeedback={"Bad"} counter={bad} />
-      <SumAll />
-      <Average />
     </div>
   );
 };
