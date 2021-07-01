@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 
+const Button = (props) => {
+  return (
+    <div>
+      <button onClick={props.clickType}>{props.text}</button>
+    </div>
+  );
+};
+
 const Statistics = (props) => {
+  const StatsFeed = (props) => {
+    return (
+      <div>
+        <p>
+          {props.text} {props.value}
+        </p>
+      </div>
+    );
+  };
   if (props.total > 0) {
     return (
       <div>
         <h1>Statistics</h1>
-        <p>
-          {props.GoodFeedback} {props.GoodCounter}
-        </p>
-        <p>
-          {props.NeutralFeedback} {props.NeutralCounter}
-        </p>
-        <p>
-          {props.BadFeedback} {props.BadCounter}
-        </p>
-        <p>
-          {props.textAll} {props.sumAll}
-        </p>
-        <p>Average {props.average}</p>
-        <p>Positive {props.percentage}%</p>
+        <StatsFeed text="Good" value={props.GoodCounter} />
+        <StatsFeed text="Neutral" value={props.NeutralCounter} />
+        <StatsFeed text="Bad" value={props.BadCounter} />
+        <StatsFeed text="All" value={props.sumAll} />
+        <StatsFeed text="Average" value={props.average} />
+        <StatsFeed text="Positive" value={props.percentage} />
       </div>
     );
   } else {
@@ -42,34 +51,28 @@ const App = () => {
   const increaseGoodByOne = () => {
     setGood(good + 1);
     setScore(score + 1);
-    console.log("clicked good");
   };
 
   const increaseNeutralByOne = () => {
     setNeutral(neutral + 1);
-    console.log("clicked neutral");
   };
 
   const increaseBadByOne = () => {
     setBad(bad + 1);
     setScore(score - 1);
-    console.log("clicked bad");
   };
+
   return (
     <div>
       <h1>Give Feedback</h1>
-      <button onClick={increaseGoodByOne}>Good</button>
-      <button onClick={increaseNeutralByOne}>Neutral</button>
-      <button onClick={increaseBadByOne}>Bad</button>
+      <Button clickType={increaseGoodByOne} text={"Good"} />
+      <Button clickType={increaseNeutralByOne} text={"Neutral"} />
+      <Button clickType={increaseBadByOne} text={"Bad"} />
       <Statistics
         total={total}
-        GoodFeedback={"Good"}
         GoodCounter={good}
-        NeutralFeedback={"Neutral"}
         NeutralCounter={neutral}
-        BadFeedback={"Bad"}
         BadCounter={bad}
-        textAll={"All"}
         sumAll={total}
         average={averageCalc}
         percentage={(good * 100) / total}
