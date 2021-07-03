@@ -23,12 +23,58 @@ const Statistics = (props) => {
     return (
       <div>
         <h1>Statistics</h1>
-        <Statistic text="Good" value={props.GoodCounter} />
-        <Statistic text="Neutral" value={props.NeutralCounter} />
-        <Statistic text="Bad" value={props.BadCounter} />
-        <Statistic text="All" value={props.sumAll} />
-        <Statistic text="Average" value={props.average} />
-        <Statistic text="Positive" value={props.percentage} />
+        <table>
+          <tr>
+            <td>
+              <Statistic text="Good" />
+            </td>
+            <td>
+              <Statistic value={props.GoodCounter} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Statistic text="Neutral" />
+            </td>
+            <td>
+              <Statistic value={props.NeutralCounter} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Statistic text="Bad" />
+            </td>
+            <td>
+              <Statistic value={props.BadCounter} />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <Statistic text="All" />
+            </td>
+            <td>
+              <Statistic value={props.sumAll} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Statistic text="Average" />
+            </td>
+            <td>
+              <Statistic value={props.average} />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <Statistic text="Positive" />
+            </td>
+            <td>
+              <Statistic value={props.percentage} />
+            </td>
+          </tr>
+        </table>
       </div>
     );
   } else {
