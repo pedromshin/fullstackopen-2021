@@ -13,7 +13,17 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
 
-  return <div>{anecdotes[selected]}</div>;
+  function GenNum(p) {
+    p = setSelected(Math.floor(Math.random() * 7));
+  }
+
+  console.log(selected);
+  return (
+    <div>
+      <p>{anecdotes[selected]}</p>
+      <button onClick={GenNum}>Next anecdote</button>
+    </div>
+  );
 };
 
 export default App;
