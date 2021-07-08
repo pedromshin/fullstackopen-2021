@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 
+const PageText = ({ selectedAnecdote, voteCounter }) => {
+  return (
+    <div>
+      <p>{selectedAnecdote}</p>
+      <p>Has {voteCounter} votes</p>
+    </div>
+  );
+};
+
+const Button = ({ buttonFunction, buttonText }) => {
+  return <button onClick={buttonFunction}>{buttonText}</button>;
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often",
@@ -12,16 +25,29 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [voteArr, setVoteNumArr] = useState(
+    new Array(anecdotes.length).fill(0)
+  );
 
-  function GenNum(p) {
-    p = setSelected(Math.floor(Math.random() * 7));
-  }
+  const HandleNext = (p) => {
+    p = setSelected(Math.floor(Math.random() * anecdotes.length));
+  };
 
-  console.log(selected);
+  const HandleVote = () => {
+    const newVoteArr = [...voteArr];
+    newVoteArr[selected] += 1;
+    setVoteNumArr(newVoteArr);
+    console.log(voteArr);
+  };
+
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <button onClick={GenNum}>Next anecdote</button>
+      <PageText
+        selectedAnecdote={anecdotes[selected]}
+        voteCounter={voteArr[selected]}
+      />
+      <Button buttonFunction={HandleNext} buttonText={"Next anecdote"} />
+      <Button buttonFunction={HandleVote} buttonText={"Vote"} />
     </div>
   );
 };
