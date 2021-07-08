@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
-const PageText = ({ selectedAnecdote, voteCounter }) => {
+const PageText = ({ selectedAnecdote, voteCounter, mostVoted }) => {
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{selectedAnecdote}</p>
       <p>Has {voteCounter} votes</p>
+      <h1>Anecdote with most votes</h1>
+      <p>{mostVoted}</p>
     </div>
   );
 };
@@ -40,11 +43,14 @@ const App = () => {
     console.log(voteArr);
   };
 
+  const mostVotedIndex = voteArr.indexOf(Math.max(...voteArr));
+
   return (
     <div>
       <PageText
         selectedAnecdote={anecdotes[selected]}
         voteCounter={voteArr[selected]}
+        mostVoted={anecdotes[mostVotedIndex]}
       />
       <Button buttonFunction={HandleNext} buttonText={"Next anecdote"} />
       <Button buttonFunction={HandleVote} buttonText={"Vote"} />
