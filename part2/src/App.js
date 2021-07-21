@@ -1,6 +1,13 @@
 import React from 'react'
-import Note from './components/Note'
 
+
+const Parts = (props) => {
+  return (
+    <div>
+      {props.content}
+    </div>
+  )
+}
 
 const App = () => {
   const course = {
@@ -24,19 +31,22 @@ const App = () => {
       }
     ]
   }
+  const exArr = course.parts.map(exNum => exNum.exercises) 
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const exSum = exArr.reduce(reducer)
+  const content = course.parts.map(partMap => 
+    <p key={partMap.id}>
+      {partMap.name} {partMap.exercises}
+    </p> 
+    )
+  
 
   const Course = ({header}) => {
     return (
       <div>
         <h1>{header}</h1>
-        <ul>
-          {course.parts.map(partMap => 
-            <li key={partMap.id}>
-              {partMap.name} {partMap.exercises}
-            </li> 
-            )
-          }
-        </ul>
+        <Parts content={content}/>
+        <p>total of {exSum} exercises</p>
       </div>
     )
   }
