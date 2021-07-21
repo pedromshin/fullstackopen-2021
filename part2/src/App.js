@@ -32,7 +32,7 @@ const App = () => {
         <ul>
           {course.parts.map(partMap => 
             <li key={partMap.id}>
-              {partMap.name} {partMap.exercises}
+              {partMap.name} 
             </li> 
             )
           }
