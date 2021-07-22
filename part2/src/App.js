@@ -1,57 +1,88 @@
 import React from 'react'
 
 
-const Parts = (props) => {
-  return (
+const Course = (props) => {
+  return(
     <div>
-      {props.content}
+        {props.content}
     </div>
   )
 }
 
 const App = () => {
-  const course = {
-    id: 1,
-    title: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      }
-    ]
-  }
-  const exArr = course.parts.map(exNum => exNum.exercises) 
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  const exSum = exArr.reduce(reducer)
-  const content = course.parts.map(partMap => 
-    <p key={partMap.id}>
-      {partMap.name} {partMap.exercises}
-    </p> 
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
+
+
+  const coursesSections = courses.map(
+      section => (
+        <div>
+          <h1>
+            {section.name}
+          </h1>
+          {section.parts.map(
+              part => {
+                return(
+                  <div>
+                    <p>{part.name} {part.exercises} </p>
+                  </div>
+                )
+              }
+            )
+          }
+        </div>
+      )
     )
+
+ 
+
+  return(
+    <div>
+      <Course content={coursesSections}/>
+    </div>
+  )
+} 
   
-
-  const Course = ({header}) => {
-    return (
-      <div>
-        <h1>{header}</h1>
-        <Parts content={content}/>
-        <p>total of {exSum} exercises</p>
-      </div>
-    )
-  }
-
-  return <Course header={course.title} />
-}
-
 export default App
