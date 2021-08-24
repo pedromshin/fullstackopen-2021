@@ -4,7 +4,7 @@ import React from 'react'
 const Course = (props) => {
   return(
     <div>
-        {props.content}
+      {props.content}
     </div>
   )
 }
@@ -55,32 +55,29 @@ const App = () => {
     }
   ]
 
-
-  const coursesSections = courses.map(
-      section => (
-        <div>
-          <h1>
-            {section.name}
-          </h1>
-          {section.parts.map(
-              part => {
-                return(
-                  <div>
-                    <p>{part.name} {part.exercises} </p>
-                  </div>
-                )
-              }
-            )
-          }
-        </div>
-      )
+  const content = courses.map(section => {
+    return (
+    <div>
+      <div>
+        <h1>{section.name}</h1>  
+      </div>
+      <div>
+        {section.parts.map( part => <p>{part.name} {part.exercises}</p>)}
+      </div>
+      <div>
+        <p> total is {section.parts.reduce( ( (sum, exercise) => sum + exercise.exercises ), 0 ) } </p>
+      </div>
+    </div>
     )
+  })
+
+
 
  
 
   return(
     <div>
-      <Course content={coursesSections}/>
+      <Course content={content}/>
     </div>
   )
 } 
