@@ -1,13 +1,6 @@
 import React from 'react'
 
-
-const Course = (props) => {
-  return(
-    <div>
-      {props.content}
-    </div>
-  )
-}
+import Course from './Course'
 
 const App = () => {
   const courses = [
@@ -50,9 +43,9 @@ const App = () => {
           name: 'Middlewares',
           exercises: 7,
           id: 2
-        }
+        },
       ]
-    }
+    },
   ]
 
   const content = courses.map(section => {
@@ -70,11 +63,7 @@ const App = () => {
     </div>
     )
   })
-
-
-
- 
-
+  
   return(
     <div>
       <Course content={content}/>
